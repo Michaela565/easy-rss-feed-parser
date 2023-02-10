@@ -8,6 +8,7 @@ def inputIsUrl(url):
 
     if not validated_url:
         print("Did not input an url.")
+        return False
     else:
         return feedparser.parse(url)
 
@@ -26,10 +27,13 @@ def getInput():
     userInput = input()
     return userInput  
 
-url = inputIsUrl("https://hackaday.com/blog/feed/")
-printRSS(url)
-#https://www.mangago.me/r/rsslink/sachiiro_no_one_room.xml
-#https://hackaday.com/blog/feed/
-#d = feedparser.parse("http://feedparser.org/docs/examples/atom10.xml")
-#print(d['feed']['title'])
+def main():
+    url = getInput()
+    while inputIsUrl(url):
+        parsedUrl = inputIsUrl(url)
+        printRSS(parsedUrl)
+        url = getInput()
+
+if __name__ == '__main__':
+    main()
 
